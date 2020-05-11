@@ -25,6 +25,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   dio: ^3.0.3
   flutter_redux: ^0.5.3
+  json_serializable: ^3.2.3
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
