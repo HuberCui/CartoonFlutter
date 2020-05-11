@@ -23,7 +23,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
-
+  dio: ^3.0.3
+  flutter_redux: ^0.5.3
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -41,9 +42,63 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+    - images/common/nodata@2x.png
+    - images/common/normal_placeholder_h@2x.png
+    - images/common/normal_placeholder_v@2x.png
+    - images/common/rank_frist@2x.png
+    - images/common/rank_second@2x.png
+    - images/common/rank_third@2x.png
+    - images/common/yaofan@2x.png
+
+    - images/mine/mine_accout@2x.png
+    - images/mine/mine_author@2x.png
+    - images/mine/mine_bg_for_boy@2x.png
+    - images/mine/mine_bg_for_girl@2x.png
+    - images/mine/mine_cashew@2x.png
+    - images/mine/mine_coin@2x.png
+    - images/mine/mine_feedBack@2x.png
+    - images/mine/mine_freed@2x.png
+    - images/mine/mine_judge@2x.png
+    - images/mine/mine_mail@2x.png
+    - images/mine/mine_message@2x.png
+    - images/mine/mine_seal@2x.png
+    - images/mine/mine_setting@2x.png
+    - images/mine/mine_subscript@2x.png
+    - images/mine/mine_vip@2x.png
+
+    - images/navigation/nav_back_black@2x.png
+    - images/navigation/nav_back_white@2x.png
+    - images/navigation/nav_bg@2x.png
+    - images/navigation/nav_reload@2x.png
+    - images/navigation/nav_search@2x.png
+
+    - images/read/readerMenu_catalog@2x.png
+    - images/read/readerMenu_changeScreen_vertical@2x.png
+    - images/read/readerMenu_changeScreen_horizontal@2x.png
+    - images/read/readerMenu_luminance@2x.png
+
+    - images/recommend/gender_female@2x.png
+    - images/recommend/gender_male@2x.png
+    - images/refresh/refresh_discover@2x.png
+    - images/refresh/refresh_kiss@2x.png
+    - images/refresh/refresh_loading_1@2x.png
+    - images/refresh/refresh_loading_2@2x.png
+    - images/refresh/refresh_loading_3@2x.png
+    - images/refresh/refresh_normal@2x.png
+    - images/refresh/refresh_will_refresh@2x.png
+
+    - images/search/search_history_delete@2x.png
+    - images/search/search_keyword_refresh@2x.png
+    - images/tab/tab_book@2x.png
+    - images/tab/tab_book_S@2x.png
+    - images/tab/tab_class@2x.png
+    - images/tab/tab_class_S@2x.png
+    - images/tab/tab_home@2x.png
+    - images/tab/tab_home_S@2x.png
+    - images/tab/tab_mine@2x.png
+    - images/tab/tab_mine_S@2x.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
