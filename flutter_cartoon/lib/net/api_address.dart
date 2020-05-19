@@ -1,11 +1,13 @@
 
 class Api_Address{
-  static const String host = "";
-
+  static const String host = "http://app.u17.com/v3/appV3_3/ios/phone/";
+  static const String Authorization = "Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==";
+  static const String Accept = "application/json";
   /**推荐列表*/
-  static BoutiqueList(){
+  static getBoutiqueList(){
     return "${host}comic/boutiqueListNew";
   }
+
   /**vip列表*/
   static VipList(){
     return "${host}list/vipList";
