@@ -30,21 +30,33 @@ List list3 = [{'title':'帮助中心','image':'assets/images/mine/mine_feedBack@
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+
         slivers: <Widget>[
-          SliverPersistentHeader(
-             pinned: false,//标题栏是否固定
-            delegate: SliverCustomHeaderDelegate(
-              title: '',
-              collapsedHeight: 40,
-              expandedHeight: 300,
-              paddingTop: MediaQuery.of(context).padding.top,
-                fileImageUrl: 'assets/images/mine/mine_bg_for_girl@2x.png'
+          SliverAppBar(
+            actions: <Widget>[
+//              _buildAction(),
+            ],
+            title: Text(''),
+          //  backgroundColor: Theme.of(context).accentColor,
+            expandedHeight: 200.0,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Image.asset('assets/images/mine/mine_bg_for_girl@2x.png', fit: BoxFit.cover),
             ),
-//             floating: true,
-//            snap: false,
-//            expandedHeight: 230,
-//              flexibleSpace:Container(child: Image.asset('assets/images/mine/mine_bg_for_girl@2x.png',fit: BoxFit.fill,height: 230,),height: 230,)
+             floating: true,
+            // snap: snap,
+            // pinned: pinned,
           ),
+//          SliverPersistentHeader(
+//             pinned: false,//标题栏是否固定
+//            delegate: SliverCustomHeaderDelegate(
+//              title: '',
+//              collapsedHeight: 40,
+//              expandedHeight: 300,
+//              paddingTop: MediaQuery.of(context).padding.top,
+//                fileImageUrl: 'assets/images/mine/mine_bg_for_girl@2x.png'
+//            ),
+//
+//          ),
           SliverList(
             // itemExtent: 50.0,
               delegate: SliverChildBuilderDelegate((context,index){
