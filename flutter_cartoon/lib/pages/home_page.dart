@@ -122,6 +122,7 @@ class _MainListState extends State<MainList> {
 //
 //          ),
            SliverList(delegate: SliverChildBuilderDelegate((context,index){
+//             return Text("$index");
              return HomeSections();
            },childCount: 4),)
 
