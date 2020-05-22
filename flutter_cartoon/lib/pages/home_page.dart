@@ -7,12 +7,44 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin{
+  TabController _tabController;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+
+    _tabController = TabController(length: 4,vsync: this);
+  }
+  void dispose(){ //生命周期函数：
+    super.dispose();
+    _tabController.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return
       Scaffold(
-        body: MainList(),
+
+        appBar: AppBar(title:TabBar(
+          tabs: <Widget>[
+            Tab(text: "热门"),
+            Tab(text: "推荐"),
+            Tab(text: "关注"),
+            Tab(text: "收藏"),
+
+          ],
+          controller: _tabController,
+        ),actions: <Widget>[
+          IconButton(icon: Icon(Icons.search), onPressed: null)
+        ],),
+        body: TabBarView(children: [
+          MainList(),
+          MainList(),
+          MainList(),
+          MainList(),
+
+        ],controller: _tabController,),
         floatingActionButton: FloatingActionButton(child: Icon(Icons.add),onPressed: () async {
           await HomeRequest.request_BoutiqueList();
         },),
@@ -31,6 +63,12 @@ class _MainListState extends State<MainList> {
   List list2 = [{'title':'我的消息/消费券','image':'assets/images/mine/mine_message@2x.png'},{'title':'妖果商城','image':'assets/images/mine/mine_cashew@2x.png'},{'title':'在线阅读免流量','image':'assets/images/mine/mine_freed@2x.png'}];
   List list3 = [{'title':'帮助中心','image':'assets/images/mine/mine_feedBack@2x.png'},{'title':'我要反馈','image':'assets/images/mine/mine_mail@2x.png'},{'title':'给我们评分','image':'assets/images/mine/mine_judge@2x.png'},{'title':'成为作者','image':'assets/images/mine/mine_author@2x.png'},{'title':'设置','image':'assets/images/mine/mine_setting@2x.png'}];
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print('aaaa');
+  }
   @override
   Widget build(BuildContext context) {
     return  EasyRefresh.custom(
