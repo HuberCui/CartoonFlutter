@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttercartoon/PHheader.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -26,17 +27,24 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
     return
       Scaffold(
 
-        appBar: AppBar(title:TabBar(
+        appBar: AppBar(
+          backgroundColor: Colors.green,
+          title:TabBar(
+          labelColor: Colors.white,
+          labelStyle: TextStyle(fontSize: 16),
+          unselectedLabelColor: Colors.white30,
+          unselectedLabelStyle: TextStyle(fontSize: 14),
+          indicator: BoxDecoration(),
           tabs: <Widget>[
-            Tab(text: "热门"),
-            Tab(text: "推荐"),
-            Tab(text: "关注"),
-            Tab(text: "收藏"),
-
+            Tab(text:"推荐"),
+            Tab(text:"VIP"),
+            Tab(text:"订阅"),
+           // Tab(child: Text("排行",style: TextStyle(fontSize: 16),),),
+             Tab(text: "排行")
           ],
           controller: _tabController,
         ),actions: <Widget>[
-          IconButton(icon: Icon(Icons.search), onPressed: null)
+          IconButton(icon: Icon(Icons.search,color: Colors.white,), onPressed: null)
         ],),
         body: TabBarView(children: [
           MainList(),
