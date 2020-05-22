@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttercartoon/PHheader.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-
+import 'package:fluttercartoon/home/home_section.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -121,54 +121,11 @@ class _MainListState extends State<MainList> {
 //            ),
 //
 //          ),
-          SliverList(
-            // itemExtent: 50.0,
-            delegate: SliverChildBuilderDelegate((context,index){
+           SliverList(delegate: SliverChildBuilderDelegate((context,index){
+             return HomeSections();
+           },childCount: 4),)
 
-              return GestureDetector(child: MineRow(list0[index]["image"],list0[index]["title"],index == list0.length-1 ?false :true),onTap: (){
-                print(list0[index]["title"]);
-              },);
-            }, childCount:list0.length),),
-          SliverToBoxAdapter(
 
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
-
-            ),
-          ),
-          SliverList(
-            // itemExtent: 50.0,
-              delegate: SliverChildBuilderDelegate((context,index){
-                return GestureDetector(child: MineRow(list1[index]["image"],list1[index]["title"],index == list1.length-1 ?false :true),onTap: (){
-                  print(list1[index]["title"]);
-                },);
-              }, childCount:list1.length)
-          ),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
-            ),
-          ),
-          SliverList(
-            // itemExtent: 50.0,
-              delegate: SliverChildBuilderDelegate((context,index){
-                return GestureDetector(child: MineRow(list2[index]["image"],list2[index]["title"],index == list2.length-1 ?false :true),onTap: (){
-                  print(list2[index]["title"]);
-                },);
-              }, childCount:list2.length)),
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: EdgeInsets.symmetric(vertical: 5),
-//                child: Container(height: 12,)
-            ),
-          ),
-          SliverList(
-            // itemExtent: 50.0,
-              delegate: SliverChildBuilderDelegate((context,index){
-                return GestureDetector(child: MineRow(list3[index]["image"],list3[index]["title"],index == list3.length-1 ?false :true),onTap: (){
-                  print(list3[index]["title"]);
-                },);
-              }, childCount:list3.length)),
 
         ],
 
