@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttercartoon/home/home_item.dart';
+import 'package:fluttercartoon/home/home_recommend_item.dart';
 class HomeSections extends StatefulWidget {
   @override
   _HomeSectionsState createState() => _HomeSectionsState();
