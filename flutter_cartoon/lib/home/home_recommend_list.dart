@@ -10,7 +10,14 @@ class Home_Recommend_List extends StatefulWidget {
   _Home_Recommend_ListState createState() => _Home_Recommend_ListState();
 }
 
-class _Home_Recommend_ListState extends State<Home_Recommend_List> {
+class _Home_Recommend_ListState extends State<Home_Recommend_List> with AutomaticKeepAliveClientMixin<Home_Recommend_List>{
+
+  BookIntro bookIntro;
+  GalleyItem galleyItem;
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
   @override
   void initState() {
     // TODO: implement initState
@@ -23,15 +30,16 @@ class _Home_Recommend_ListState extends State<Home_Recommend_List> {
         bookIntro = BookIntro.fromJson(res.data);
         galleyItem = bookIntro.galleryItems.first;
         print("------  ${galleyItem.cover_image}");
+        print("init state");
       });
     });
   }
 
-  BookIntro bookIntro;
-  GalleyItem galleyItem;
+
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return EasyRefresh.custom(
       onRefresh: () async {
         print('下拉刷新');

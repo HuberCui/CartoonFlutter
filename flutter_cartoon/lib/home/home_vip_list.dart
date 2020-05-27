@@ -7,9 +7,13 @@ class Home_VIP_List extends StatefulWidget {
   _Home_VIP_ListState createState() => _Home_VIP_ListState();
 }
 
-class _Home_VIP_ListState extends State<Home_VIP_List> {
+class _Home_VIP_ListState extends State<Home_VIP_List> with AutomaticKeepAliveClientMixin<Home_VIP_List>{
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return EasyRefresh.builder(onRefresh: () async {
       print('下拉刷新');
     }, onLoad: () async {
