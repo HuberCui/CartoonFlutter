@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttercartoon/home/home_recommend_item.dart';
-import 'package:fluttercartoon/models/comics.dart';
+import 'package:fluttercartoon/home_models//comics.dart';
 //class HomeSections extends StatefulWidget {
 //
 //  @override

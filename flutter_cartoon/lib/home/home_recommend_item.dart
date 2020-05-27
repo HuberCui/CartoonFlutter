@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:fluttercartoon/models/commic_detail.dart';
+import 'package:fluttercartoon/home_models//commic_detail.dart';
 class HomeItem extends StatelessWidget {
   CommicDetail commicDetail;
   HomeItem(this.commicDetail);
   @override
   Widget build(BuildContext context) {
-   
+
     return Container(
       color: Colors.white,
       child: Column(

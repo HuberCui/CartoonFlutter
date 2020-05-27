@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttercartoon/home/home_recommend_section.dart';
-import 'package:fluttercartoon/models/galleryItem.dart';
-import 'package:fluttercartoon/models/book_intro.dart';
+import 'package:fluttercartoon/home_models//galleryItem.dart';
+import 'package:fluttercartoon/home_models//book_intro.dart';
 import 'package:fluttercartoon/page_request/home_page_request.dart';
 class Home_Recommend_List extends StatefulWidget {
   @override

@@ -7,9 +7,6 @@ part of 'comics.dart';
 // **************************************************************************
 
 Comics _$ComicsFromJson(Map<String, dynamic> json) {
-  if(json["itemTitle"] == "最新动画"){
-    print("zuixindonghua");
-  }
   return Comics(
     json['sortId'] as String,
     json['description'] as String,
