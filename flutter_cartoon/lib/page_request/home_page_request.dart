@@ -3,7 +3,7 @@ import 'package:fluttercartoon/PHheader.dart';
 
 class HomeRequest{
   //推荐列表
-    static request_BoutiqueList() async{
+   static request_BoutiqueList() async{
        next() async{
          String url  = Api_Address.getBoutiqueList();
          var res = await httpManager.netFetch(url, null, null, RequestMethod.get_method);

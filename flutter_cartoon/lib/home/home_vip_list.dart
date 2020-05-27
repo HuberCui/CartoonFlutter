@@ -10,25 +10,18 @@ class Home_VIP_List extends StatefulWidget {
 class _Home_VIP_ListState extends State<Home_VIP_List> {
   @override
   Widget build(BuildContext context) {
-    return  EasyRefresh.builder(
-      onRefresh: () async{
-        print('下拉刷新');
-      },
-      onLoad: () async {
-        print('上拉加载');
-      },
-
-
-
-      builder: (BuildContext context, ScrollPhysics physics, Widget header, Widget footer){
-           return ListView.builder(itemBuilder: (context,index){
-
-             return Home_VIP_Section();
-           },itemCount: 6,);
-      }
-
-
-    );
+    return EasyRefresh.builder(onRefresh: () async {
+      print('下拉刷新');
+    }, onLoad: () async {
+      print('上拉加载');
+    }, builder: (BuildContext context, ScrollPhysics physics, Widget header,
+        Widget footer) {
+      return ListView.builder(
+        itemBuilder: (context, index) {
+          return Home_VIP_Section();
+        },
+        itemCount: 6,
+      );
+    });
   }
 }
-

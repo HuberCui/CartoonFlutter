@@ -2,28 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:fluttercartoon/home/home_recommend_section.dart';
-
+import 'package:fluttercartoon/models/galleryItem.dart';
+import 'package:fluttercartoon/models/book_intro.dart';
+import 'package:fluttercartoon/page_request/home_page_request.dart';
 class Home_Recommend_List extends StatefulWidget {
   @override
   _Home_Recommend_ListState createState() => _Home_Recommend_ListState();
 }
 
 class _Home_Recommend_ListState extends State<Home_Recommend_List> {
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     print('aaaa');
+    HomeRequest.request_BoutiqueList().then((res){
+
+
+      setState(() {
+        bookIntro = BookIntro.fromJson(res.data);
+        galleyItem = bookIntro.galleryItems.first;
+        print("------  ${galleyItem.cover_image}");
+      });
+    });
   }
+
+  BookIntro bookIntro;
+  GalleyItem galleyItem;
+
   @override
   Widget build(BuildContext context) {
-    return  EasyRefresh.custom(
-      onRefresh: () async{
+    return EasyRefresh.custom(
+      onRefresh: () async {
         print('下拉刷新');
-      },
-      onLoad: () async {
-        print('上拉加载');
+
+        HomeRequest.request_BoutiqueList().then((res){
+
+
+          setState(() {
+            bookIntro = BookIntro.fromJson(res.data);
+            galleyItem = bookIntro.galleryItems.first;
+            print("------  ${galleyItem.cover_image}");
+          });
+        });
       },
 
       slivers: <Widget>[
@@ -35,14 +56,16 @@ class _Home_Recommend_ListState extends State<Home_Recommend_List> {
           //  backgroundColor: Theme.of(context).accentColor,
           expandedHeight: 200.0,
           flexibleSpace: FlexibleSpaceBar(
-            background: new Swiper(
-              itemBuilder: (BuildContext context,int index){
-                return new Image.network("https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1589964924&di=afa88f893296a2741081c6f3c66257fa&src=http://a3.att.hudong.com/14/75/01300000164186121366756803686.jpg",fit: BoxFit.fill,);
+            background:bookIntro.galleryItems == null ? Container() : new Swiper(
+              itemBuilder: (BuildContext context, int index) {
+                return new Image.network(
+                  bookIntro.galleryItems[index].cover_image,
+                  fit: BoxFit.fill,
+                );
               },
-              itemCount: 3,
+              itemCount: bookIntro.galleryItems.length,
               autoplay: true,
               pagination: new SwiperPagination(),
-
             ),
           ),
           floating: true,
@@ -60,16 +83,13 @@ class _Home_Recommend_ListState extends State<Home_Recommend_List> {
 //            ),
 //
 //          ),
-        SliverList(delegate: SliverChildBuilderDelegate((context,index){
+        SliverList(
+          delegate: SliverChildBuilderDelegate((context, index) {
 //             return Text("$index");
-          return HomeSections();
-        },childCount: 4),)
-
-
-
+            return HomeSections();
+          }, childCount: 4),
+        )
       ],
-
     );
   }
-
 }

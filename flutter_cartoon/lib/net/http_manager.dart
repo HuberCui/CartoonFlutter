@@ -55,7 +55,7 @@ class HttpManager{
         options.method = "delete";
         break;
     }
-
+//  返回  HttpResult
     resultError(DioError e) {
       Response errorResponse;
       if (e.response != null) {
