@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttercartoon/PHheader.dart';
 import 'package:fluttercartoon/home/home_recommend_list.dart';
 import 'package:fluttercartoon/home/home_vip_list.dart';
+import 'package:fluttercartoon/home/home_rank_list.dart';
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -49,7 +50,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
           Home_Recommend_List(),
           Home_VIP_List(),
           Home_VIP_List(),
-          Home_VIP_List(),
+          Home_Rank_List(),
 
         ],controller: _tabController,),
         floatingActionButton: FloatingActionButton(child: Icon(Icons.add),onPressed: () async {

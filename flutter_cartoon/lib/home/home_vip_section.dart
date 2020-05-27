@@ -27,15 +27,15 @@ class _Home_VIP_SectionState extends State<Home_VIP_Section> {
               )),
 
 GridView.builder(
-  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,mainAxisSpacing: 10,crossAxisSpacing: 5,childAspectRatio: 1.3),
-    itemCount: 4,
+  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,mainAxisSpacing: 10,crossAxisSpacing: 5,childAspectRatio: 0.5),
+    itemCount: 3,
     shrinkWrap: true,//使当前gridview自适应自己高度，解决GridView inside a Listview causing “Vertical viewport was given unbounded height” even when Expanded
     physics: NeverScrollableScrollPhysics(),//使这个GridView不随着外边的listview滚动滚动
     itemBuilder: (context,index){
        return Home_VIP_Item();
      }
 
-)
+),Container(height: 20,)
 
         ],
       ),

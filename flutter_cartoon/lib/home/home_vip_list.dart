@@ -18,11 +18,13 @@ class _Home_VIP_ListState extends State<Home_VIP_List> {
         print('上拉加载');
       },
 
+
+
       builder: (BuildContext context, ScrollPhysics physics, Widget header, Widget footer){
            return ListView.builder(itemBuilder: (context,index){
 
              return Home_VIP_Section();
-           });
+           },itemCount: 6,);
       }
 
 
