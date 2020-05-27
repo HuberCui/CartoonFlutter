@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-
+import 'package:fluttercartoon/models/commic_detail.dart';
 class HomeItem extends StatelessWidget {
+  CommicDetail commicDetail;
+  HomeItem(this.commicDetail);
   @override
   Widget build(BuildContext context) {
+   
     return Container(
       color: Colors.white,
       child: Column(
@@ -10,9 +13,12 @@ class HomeItem extends StatelessWidget {
 //        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(
-              child: Image.asset(
-                'assets/images/mine/mine_bg_for_boy@2x.png',
-                fit: BoxFit.cover,
+              child: ConstrainedBox(
+                constraints: BoxConstraints.expand(),
+                child: Image.network(
+                  commicDetail.cover_image,
+                  fit: BoxFit.cover,
+                ),
               ),
               flex: 3),
           Expanded(
@@ -21,12 +27,12 @@ class HomeItem extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(left: 10),
-                  child: Text("title"),
+                  child: Text(commicDetail.name),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    "少女 恋爱 纯爱",
+                    commicDetail.subTitle,
                     style: TextStyle(color: Colors.black26, fontSize: 13),
                   ),
                 )

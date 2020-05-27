@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fluttercartoon/home/home_recommend_item.dart';
+import 'package:fluttercartoon/models/comics.dart';
+//class HomeSections extends StatefulWidget {
+//
+//  @override
+//  _HomeSectionsState createState() => _HomeSectionsState();
+//}
 
-class HomeSections extends StatefulWidget {
+class HomeSections extends StatelessWidget {
+  Comics comics;
 
-  @override
-  _HomeSectionsState createState() => _HomeSectionsState();
-}
-
-class _HomeSectionsState extends State<HomeSections> {
+  HomeSections(this.comics);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,34 +29,40 @@ class _HomeSectionsState extends State<HomeSections> {
                       padding: EdgeInsets.only(left: 8),
                       child: Row(
                         children: <Widget>[
-                          Icon(Icons.print),
+                          Image.network(comics.titleIconUrl,width: 20,height: 20,),
                           Padding(
                             padding: EdgeInsets.only(left: 8),
-                            child: Text("强力推荐作品"),
+                            child: Text(comics.itemTitle),
                           ),
                         ],
                       )),
                   Padding(
                     padding: EdgeInsets.only(right: 10),
-                    child: Icon(Icons.arrow_forward),
+                    child: Icon(Icons.more_horiz),
                   )
                 ],
               )),
-          GridView.builder(
+
+
+        comics.comics.length > 0 ?  GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 5,
                 childAspectRatio: 1.3),
-            itemCount: 4,
+            itemCount: comics.comics.length == null ? 0: comics.comics.length,
             shrinkWrap: true,
             //使当前gridview自适应自己高度，解决GridView inside a Listview causing “Vertical viewport was given unbounded height” even when Expanded
             physics: NeverScrollableScrollPhysics(),
             //使这个GridView不随着外边的listview滚动滚动
             itemBuilder: (context, index) {
-              return HomeItem();
+              if(comics.itemTitle == "最新动画"){
+                return Container(child: Text('格式不对'),);
+              }
+
+              return HomeItem(comics.comics[index]);
             },
-          ),
+          ) : Container(),
           Container(
             height: 15,
           )

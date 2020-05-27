@@ -7,6 +7,8 @@ class HomeRequest{
        next() async{
          String url  = Api_Address.getBoutiqueList();
          var res = await httpManager.netFetch(url, null, null, RequestMethod.get_method);
+
+         print(res.data);
          return res;
        }
 

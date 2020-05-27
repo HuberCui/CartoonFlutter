@@ -13,7 +13,6 @@ class Home_Recommend_List extends StatefulWidget {
 class _Home_Recommend_ListState extends State<Home_Recommend_List> with AutomaticKeepAliveClientMixin<Home_Recommend_List>{
 
   BookIntro bookIntro;
-  GalleyItem galleyItem;
 
   @override
   // TODO: implement wantKeepAlive
@@ -28,8 +27,8 @@ class _Home_Recommend_ListState extends State<Home_Recommend_List> with Automati
 
       setState(() {
         bookIntro = BookIntro.fromJson(res.data);
-        galleyItem = bookIntro.galleryItems.first;
-        print("------  ${galleyItem.cover_image}");
+
+        print("------  ${bookIntro.galleryItems.first.cover_image}");
         print("init state");
       });
     });
@@ -49,8 +48,8 @@ class _Home_Recommend_ListState extends State<Home_Recommend_List> with Automati
 
           setState(() {
             bookIntro = BookIntro.fromJson(res.data);
-            galleyItem = bookIntro.galleryItems.first;
-            print("------  ${galleyItem.cover_image}");
+
+            print("======== ${bookIntro.galleryItems.first.cover_image}");
           });
         });
       },
@@ -64,14 +63,14 @@ class _Home_Recommend_ListState extends State<Home_Recommend_List> with Automati
           //  backgroundColor: Theme.of(context).accentColor,
           expandedHeight: 200.0,
           flexibleSpace: FlexibleSpaceBar(
-            background:bookIntro.galleryItems == null ? Container() : new Swiper(
+            background:bookIntro.galleryItems.length == null ? Container() : new Swiper(
               itemBuilder: (BuildContext context, int index) {
                 return new Image.network(
                   bookIntro.galleryItems[index].cover_image,
                   fit: BoxFit.fill,
                 );
               },
-              itemCount: bookIntro.galleryItems.length,
+              itemCount: bookIntro.galleryItems.length == null ?0 :bookIntro.galleryItems.length,
               autoplay: true,
               pagination: new SwiperPagination(),
             ),
@@ -94,8 +93,8 @@ class _Home_Recommend_ListState extends State<Home_Recommend_List> with Automati
         SliverList(
           delegate: SliverChildBuilderDelegate((context, index) {
 //             return Text("$index");
-            return HomeSections();
-          }, childCount: 4),
+            return HomeSections(bookIntro.comicLists[index]);
+          }, childCount: bookIntro.comicLists.length == null ? 0:bookIntro.comicLists.length),
         )
       ],
     );
