@@ -3,8 +3,15 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:fluttercartoon/page_request/home_page_request.dart';
 import 'home_vip_section.dart';
 import 'package:fluttercartoon/home_models/vip_comics.dart';
-
+enum VIP_SubScripe{
+  VIP_LIST,
+  SubScripe_LIST
+}
 class Home_VIP_List extends StatefulWidget {
+
+  VIP_SubScripe vip_subScripe;
+  Home_VIP_List(this.vip_subScripe);
+
   @override
   _Home_VIP_ListState createState() => _Home_VIP_ListState();
 }
@@ -20,17 +27,33 @@ class _Home_VIP_ListState extends State<Home_VIP_List> with AutomaticKeepAliveCl
     // TODO: implement initState
     super.initState();
 
-    HomeRequest.request_VipList().then((res){
-      setState(() {
-        for(var item in res.data["newVipList"]){
-          newVipList.add(VIP_Comic.fromJson(item));
+    if(widget.vip_subScripe == VIP_SubScripe.VIP_LIST){
+      HomeRequest.request_VipList().then((res){
+        setState(() {
+          for(var item in res.data["newVipList"]){
+            newVipList.add(VIP_Comic.fromJson(item));
 
-        }
-      });
+          }
+        });
 
+      }
+
+      );
     }
 
-    );
+    if(widget.vip_subScripe == VIP_SubScripe.SubScripe_LIST){
+      HomeRequest.request_NewSubscribeList().then(
+          (res){
+            setState(() {
+              for(var item in res.data["newSubscribeList"]){
+                newVipList.add(VIP_Comic.fromJson(item));
+
+              }
+            });
+          }
+      );
+    }
+
   }
   @override
   Widget build(BuildContext context) {

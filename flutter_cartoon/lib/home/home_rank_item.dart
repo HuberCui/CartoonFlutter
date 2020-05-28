@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-
+import 'package:fluttercartoon/home_models/commic_detail.dart';
 class HomeRank extends StatelessWidget {
+  CommicDetail commicDetail;
+  HomeRank(this.commicDetail);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,8 +13,8 @@ class HomeRank extends StatelessWidget {
                 padding: EdgeInsets.only(left: 10, top: 10),
                 child: ConstrainedBox(
                   constraints: BoxConstraints.expand(),
-                  child: Image.asset(
-                    'assets/images/mine/mine_bg_for_boy@2x.png',
+                  child: Image.network(
+                    commicDetail.cover_image,
                     fit: BoxFit.fitHeight,
                   ),
                 ),
@@ -25,12 +27,12 @@ class HomeRank extends StatelessWidget {
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(left: 10),
-                  child: Text("月票"),
+                  child: Text(commicDetail.title),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 10),
                   child: Text(
-                    "来不及了快上车，老司机票选人气漫画，带你飞",
+                    commicDetail.subTitle,
                     style: TextStyle(fontSize: 13, color: Colors.black54),
                   ),
                 ),

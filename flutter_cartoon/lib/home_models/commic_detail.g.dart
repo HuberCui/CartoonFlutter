@@ -7,9 +7,8 @@ part of 'commic_detail.dart';
 // **************************************************************************
 
 CommicDetail _$CommicDetailFromJson(Map<String, dynamic> json) {
-
-
   return CommicDetail(
+    json['title'] as String,
     json['comicId'] as int,
     json['name'] as String,
     json['cover'] as String,
@@ -35,4 +34,5 @@ Map<String, dynamic> _$CommicDetailToJson(CommicDetail instance) =>
       'short_description': instance.short_description,
       'author_name': instance.author_name,
       'is_vip': instance.is_vip,
+      'title': instance.title,
     };

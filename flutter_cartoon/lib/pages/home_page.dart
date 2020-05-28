@@ -62,8 +62,8 @@ class _HomePageState extends State<HomePage>
       body: TabBarView(
         children: [
           Home_Recommend_List(),
-          Home_VIP_List(),
-          Home_VIP_List(),
+          Home_VIP_List(VIP_SubScripe.VIP_LIST),
+          Home_VIP_List(VIP_SubScripe.SubScripe_LIST),
           Home_Rank_List(),
         ],
         controller: _tabController,
