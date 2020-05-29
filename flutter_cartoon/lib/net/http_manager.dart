@@ -41,6 +41,7 @@ class HttpManager{
         "Accept": "application/json"});
     }
     options.headers = headers;
+
     switch (requestMethod){
       case RequestMethod.get_method:
         options.method = "get";
@@ -75,7 +76,7 @@ class HttpManager{
 
     Response response;
     try {
-      response = await _dio.request(url, data: params, options: options);
+      response = await _dio.request(url,queryParameters: params, options: options);
     } on DioError catch (e) {
       return resultError(e);
     }

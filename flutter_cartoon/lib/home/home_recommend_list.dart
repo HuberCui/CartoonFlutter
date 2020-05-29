@@ -5,6 +5,8 @@ import 'package:fluttercartoon/home/home_recommend_section.dart';
 import 'package:fluttercartoon/home_models//galleryItem.dart';
 import 'package:fluttercartoon/home_models//book_intro.dart';
 import 'package:fluttercartoon/page_request/home_page_request.dart';
+
+import 'package:fluttercartoon/pages/book_intro_page.dart';
 class Home_Recommend_List extends StatefulWidget {
   @override
   _Home_Recommend_ListState createState() => _Home_Recommend_ListState();

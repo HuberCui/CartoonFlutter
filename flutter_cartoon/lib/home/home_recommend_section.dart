@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:fluttercartoon/book_detail_models/book_intro_model.dart';
 import 'package:fluttercartoon/home/home_recommend_item.dart';
 import 'package:fluttercartoon/home_models//comics.dart';
+import 'package:fluttercartoon/home_models//commic_detail.dart';
+import 'package:fluttercartoon/pages/book_intro_page.dart';
 //class HomeSections extends StatefulWidget {
 //
 //  @override
@@ -59,8 +62,14 @@ class HomeSections extends StatelessWidget {
               if(comics.itemTitle == "最新动画"){
                 return Container(child: Text('格式不对'),);
               }
+              CommicDetail detail = comics.comics[index];
+              return HomeItem(detail,onpress: (){
+                print(detail.name);
+                Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                  return BookIntro_Page(detail.comicId);
+                })).then((value) => print(value));
 
-              return HomeItem(comics.comics[index]);
+              },);
             },
           ) : Container(),
           Container(
