@@ -49,10 +49,10 @@ class HomeRequest{
     }
 
     /**详情接口*/
-    static request_CommicDetail() async{
+    static request_CommicDetail(String comic_id) async{
       next() async{
         String url  = Api_Address.CommicDetail();
-        var res = await httpManager.netFetch(url, null, null, RequestMethod.get_method);
+        var res = await httpManager.netFetch(url, {'comicid':comic_id}, null, RequestMethod.get_method);
         return res;
       }
 

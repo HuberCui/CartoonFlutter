@@ -36,7 +36,7 @@ class _Home_VIP_ListState extends State<Home_VIP_List> with AutomaticKeepAliveCl
           }
         });
 
-      }
+       }
 
       );
     }
