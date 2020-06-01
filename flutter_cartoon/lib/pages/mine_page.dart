@@ -49,21 +49,24 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
+          SliverToBoxAdapter(
+            child: Container(color: Colors.red,height: 80,),
+          ),
           SliverAppBar(
             actions: <Widget>[
 //              _buildAction(),
             ],
-            title: Text(''),
+            title: Text('DDDD'),
             //  backgroundColor: Theme.of(context).accentColor,
-            expandedHeight: 200.0,
+            expandedHeight: 50.0,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.asset(
                   'assets/images/mine/mine_bg_for_girl@2x.png',
                   fit: BoxFit.cover),
             ),
-            floating: true,
-            // snap: snap,
-            // pinned: pinned,
+//            floating: true,
+//             snap: false,
+             pinned: true,
           ),
 //          SliverPersistentHeader(
 //             pinned: false,//标题栏是否固定
