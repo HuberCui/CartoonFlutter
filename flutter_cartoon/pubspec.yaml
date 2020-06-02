@@ -52,7 +52,7 @@ dependencies:
 #   固定版本
   json_annotation: 3.0.1 #json注释
   json_serializable: ^3.3.0 #json序列化
-
+  json_to_model: ^1.3.13 #生成model flutter pub run json_to_model  or  pub run json_to_model
 
   package_info: 0.4.0+13
   connectivity: 0.4.6+1
