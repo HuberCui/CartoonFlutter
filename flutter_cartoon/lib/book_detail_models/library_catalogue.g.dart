@@ -8,6 +8,7 @@ part of 'library_catalogue.dart';
 
 Library_Catalogue _$Library_CatalogueFromJson(Map<String, dynamic> json) {
   return Library_Catalogue(
+    json['pass_time'] as int,
     json['type'] as int,
     json['name'] as String,
     json['chapter_id'] as String,
@@ -16,9 +17,7 @@ Library_Catalogue _$Library_CatalogueFromJson(Map<String, dynamic> json) {
     json['image_total'] as String,
     json['imHightArr'] as List,
     json['is_new'] as int,
-    json['pass_time'] as int,
     json['price'] as String,
-    json['release_time'] as String,
     json['size'] as String,
     json['zip_high_webp'] as String,
   );
@@ -33,7 +32,6 @@ Map<String, dynamic> _$Library_CatalogueToJson(Library_Catalogue instance) =>
       'price': instance.price,
       'size': instance.size,
       'pass_time': instance.pass_time,
-      'release_time': instance.release_time,
       'zip_high_webp': instance.zip_high_webp,
       'crop_zip_size': instance.crop_zip_size,
       'is_new': instance.is_new,

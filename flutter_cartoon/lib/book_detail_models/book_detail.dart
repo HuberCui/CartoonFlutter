@@ -47,20 +47,20 @@ class BookDetail{
   int is_vip;
   String type;
   String ori;
-  List<String> theme_ids;
+  List theme_ids;
   String series_status;
   int last_update_time;
   String description;
   String cate_id;
   int status;
   String thread_id;
-  String last_update_week;
+  // int last_update_week;
   String wideCover;
   List classifyTags;
   int is_week;
   String level;
-  String is_dub;
+  int is_dub;
   Map author;
-  BookDetail(this.comic_id,this.name,this.description,this.cover,this.short_description,this.is_vip,this.accredit,this.author,this.cate_id,this.classifyTags,this.is_dub,this.is_week,this.last_update_time,this.last_update_week,this.level,this.ori,this.series_status,this.status,this.theme_ids,this.thread_id,this.type,this.wideCover);
+  BookDetail(this.comic_id,this.name,this.description,this.cover,this.short_description,this.is_vip,this.accredit,this.author,this.cate_id,this.classifyTags,this.is_dub,this.is_week,this.last_update_time,this.level,this.ori,this.series_status,this.status,this.theme_ids,this.thread_id,this.type,this.wideCover);
 
 }

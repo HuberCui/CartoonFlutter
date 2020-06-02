@@ -6,14 +6,14 @@ import 'book_detail.dart';
 import 'package:json_annotation/json_annotation.dart';
 part 'book_intro_model.g.dart';
 @JsonSerializable()
-class BookIntro{
-  List<Library_Catalogue> chapter_list;//目录
-  List<OtherWork> OtherWorks;
-    factory BookIntro.fromJson(Map<String, dynamic> json) => _$BookIntroFromJson(json);
-
-     Map<String, dynamic> toJson() => _$BookIntroToJson(this);
-
+class BookDetailIntro{
+  @JsonKey(name:'chapter_list')
+  List<Library_Catalogue> chapterlist;//目录
+  List<OtherWork> otherWorks;
   BookDetail comic;
 
-  BookIntro(this.chapter_list,this.comic,this.OtherWorks);
+  BookDetailIntro(this.comic,this.otherWorks,this.chapterlist);
+   factory BookDetailIntro.fromJson(Map<String, dynamic> json) => _$BookDetailIntroFromJson(json);
+
+     Map<String, dynamic> toJson() => _$BookDetailIntroToJson(this);
 }
