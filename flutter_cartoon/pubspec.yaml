@@ -20,6 +20,9 @@ version: 1.0.0+1
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
+  #需要注意dependencies和dev_dependencies的区别，前者的依赖包将作为APP的代码的一部分参与编译，生成最终的安装包；
+  #而后者的依赖包只是作为开发阶段的一些工具包，主要是用于帮助我们提供开发、测试效率，比如Flutter的自动化测试包等。
+
 dependencies:
   flutter:
     sdk: flutter
@@ -51,8 +54,7 @@ dependencies:
   flare_flutter: ^1.8.3
 #   固定版本
   json_annotation: 3.0.1 #json注释
-  json_serializable: ^3.3.0 #json序列化
-  json_to_model: ^1.3.13 #生成model flutter pub run json_to_model  or  pub run json_to_model
+  
 
   package_info: 0.4.0+13
   connectivity: 0.4.6+1
@@ -79,7 +81,8 @@ dev_dependencies:
     # 配合使用命令：flutter packages pub run build_runner build
     # 配合使用命令：flutter packages pub run build_runner watch
   build_runner: ^1.10.0
-
+  json_serializable: ^3.3.0 #json序列化
+  json_to_model: ^1.3.13 #生成model flutter pub run json_to_model  or  pub run json_to_model
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
