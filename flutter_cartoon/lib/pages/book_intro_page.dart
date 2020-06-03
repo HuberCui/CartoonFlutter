@@ -63,9 +63,9 @@ class _BookIntroPageState extends State<BookIntroPage>
           },
           body: TabBarView(controller: _tabController, children: [
             // Container(height:300,color:Colors.red,child: MediaQuery.removePadding(context: context,removeTop: true, child: _buildListView('aaa')),),
-            BookDetailList(_bookIntro),
-            BookCatalogueList(_bookIntro),
-            BookCommentList()
+           _bookIntro == null? Container(): BookDetailList(_bookIntro),
+           _bookIntro == null? Container(): BookCatalogueList(_bookIntro),
+           _bookIntro == null? Container(): BookCommentList(_bookIntro.comic.comic_id,_bookIntro.comic.thread_id)
             
           ])),
     );

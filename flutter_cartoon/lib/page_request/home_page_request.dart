@@ -59,10 +59,16 @@ class HomeRequest{
       return await next();
     }
     /**评论接口*/
-    static request_CommentList(int comic_id) async{
+
+  //   {
+  //   "code": -22,
+  //   "msg": "非法访问",
+  //   "data": null
+  //  }
+    static request_CommentList(String comic_id,String thread_id) async{
        next() async{
         String url  = Api_Address.CommentList();
-        var res = await httpManager.netFetch(url, {'comicid':comic_id},null, RequestMethod.get_method);
+        var res = await httpManager.netFetch(url, {'object_id':int.parse(comic_id),'thread_id':int.parse(thread_id)},null, RequestMethod.get_method);
         return res;
       }
 

@@ -10,7 +10,6 @@ LibraryCatalogueModel _$LibraryCatalogueModelFromJson(
     Map<String, dynamic> json) {
   return LibraryCatalogueModel(
     json['pass_time'] as int,
-    // json['type'] as int,
     json['name'] as String,
     json['chapter_id'] as String,
     json['crop_zip_size'] as String,
@@ -30,7 +29,6 @@ Map<String, dynamic> _$LibraryCatalogueModelToJson(
       'name': instance.name,
       'image_total': instance.image_total,
       'chapter_id': instance.chapter_id,
-      // 'type': instance.type,
       'price': instance.price,
       'size': instance.size,
       'pass_time': instance.pass_time,
