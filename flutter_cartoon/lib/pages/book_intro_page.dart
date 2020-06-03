@@ -64,7 +64,7 @@ class _BookIntroPageState extends State<BookIntroPage>
           body: TabBarView(controller: _tabController, children: [
             // Container(height:300,color:Colors.red,child: MediaQuery.removePadding(context: context,removeTop: true, child: _buildListView('aaa')),),
             BookDetailList(_bookIntro),
-            BookCatalogueList(),
+            BookCatalogueList(_bookIntro),
             BookCommentList()
             
           ])),
