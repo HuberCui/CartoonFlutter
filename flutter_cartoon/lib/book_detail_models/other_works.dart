@@ -4,15 +4,15 @@ part 'other_works.g.dart';
 
 //其他作品
 @JsonSerializable()
-class OtherWork{
+class OtherWorkModel{
   String comicId;
   String coverUrl;
   String name;
   String passChapterNum;
-  OtherWork(this.name,this.comicId,this.coverUrl,this.passChapterNum);
-    factory OtherWork.fromJson(Map<String, dynamic> json) => _$OtherWorkFromJson(json);
+  OtherWorkModel(this.name,this.comicId,this.coverUrl,this.passChapterNum);
+    factory OtherWorkModel.fromJson(Map<String, dynamic> json) => _$OtherWorkModelFromJson(json);
 
-     Map<String, dynamic> toJson() => _$OtherWorkToJson(this);
+     Map<String, dynamic> toJson() => _$OtherWorkModelToJson(this);
 
 
 }

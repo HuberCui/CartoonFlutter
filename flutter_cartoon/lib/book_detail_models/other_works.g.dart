@@ -6,8 +6,8 @@ part of 'other_works.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OtherWork _$OtherWorkFromJson(Map<String, dynamic> json) {
-  return OtherWork(
+OtherWorkModel _$OtherWorkModelFromJson(Map<String, dynamic> json) {
+  return OtherWorkModel(
     json['name'] as String,
     json['comicId'] as String,
     json['coverUrl'] as String,
@@ -15,7 +15,8 @@ OtherWork _$OtherWorkFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$OtherWorkToJson(OtherWork instance) => <String, dynamic>{
+Map<String, dynamic> _$OtherWorkModelToJson(OtherWorkModel instance) =>
+    <String, dynamic>{
       'comicId': instance.comicId,
       'coverUrl': instance.coverUrl,
       'name': instance.name,

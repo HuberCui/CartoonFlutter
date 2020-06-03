@@ -2,8 +2,6 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'book_detail.g.dart';
 
-
-
 //"theme_ids": [
 //"少年",
 //"魔幻",
@@ -34,12 +32,9 @@ part 'book_detail.g.dart';
 //"id": "4431881"
 //},
 @JsonSerializable()
-class BookDetail{
+class BookDetailModel {
   String name;
   String comic_id;
-    factory BookDetail.fromJson(Map<String, dynamic> json) => _$BookDetailFromJson(json);
-
-     Map<String, dynamic> toJson() => _$BookDetailToJson(this);
 
   String short_description;
   int accredit;
@@ -61,6 +56,30 @@ class BookDetail{
   String level;
   int is_dub;
   Map author;
-  BookDetail(this.comic_id,this.name,this.description,this.cover,this.short_description,this.is_vip,this.accredit,this.author,this.cate_id,this.classifyTags,this.is_dub,this.is_week,this.last_update_time,this.level,this.ori,this.series_status,this.status,this.theme_ids,this.thread_id,this.type,this.wideCover);
+  BookDetailModel(
+      this.comic_id,
+      this.name,
+      this.description,
+      this.cover,
+      this.short_description,
+      this.is_vip,
+      this.accredit,
+      this.author,
+      this.cate_id,
+      this.classifyTags,
+      this.is_dub,
+      this.is_week,
+      this.last_update_time,
+      this.level,
+      this.ori,
+      this.series_status,
+      this.status,
+      this.theme_ids,
+      this.thread_id,
+      this.type,
+      this.wideCover);
+  factory BookDetailModel.fromJson(Map<String, dynamic> json) =>
+      _$BookDetailModelFromJson(json);
 
+  Map<String, dynamic> toJson() => _$BookDetailModelToJson(this);
 }

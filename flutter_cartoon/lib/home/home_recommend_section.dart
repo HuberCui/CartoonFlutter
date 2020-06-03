@@ -66,7 +66,7 @@ class HomeSections extends StatelessWidget {
               return HomeItem(detail,onpress: (){
                 print(detail.name);
                 Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                  return BookIntro_Page(detail.comicId);
+                  return BookIntroPage(detail.comicId);
                 })).then((value) => print(value));
 
               },);

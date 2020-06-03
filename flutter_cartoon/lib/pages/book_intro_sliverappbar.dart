@@ -3,9 +3,9 @@ import 'dart:ui';
 import 'package:fluttercartoon/PHheader.dart';
 import 'package:fluttercartoon/book_detail_models/book_detail.dart';
 
-class book_intro_sliverappbar {
+class BookIntroSliverappbar {
   Widget appbar(BuildContext context, TabController tabController,
-      BookDetail bookDetail) {
+      BookDetailModel bookDetail) {
     return SliverAppBar(
       // backgroundColor: Colors.transparent,
       pinned: true,
@@ -52,7 +52,7 @@ class book_intro_sliverappbar {
                                 padding: const EdgeInsets.all(15.0),
                                 child: ClipRRect(
                                     borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(bookDetail.cover)),
+                                    child: Image.network(bookDetail == null ?'https://w4mxl.github.io/images/avatar.jpg':bookDetail.cover)),
                               ),
                               Padding(
                                 padding: EdgeInsets.only(top: 15, bottom: 15),
@@ -61,13 +61,13 @@ class book_intro_sliverappbar {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Text(
-                                      bookDetail.name,
+                                      bookDetail == null ?'':bookDetail.name,
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 16),
                                     ),
                                     Container(height: 10),
                                     Text(
-                                      bookDetail.author['name'],
+                                     bookDetail == null ?'':bookDetail.author['name'],
                                       style: TextStyle(
                                           color: Colors.white, fontSize: 14),
                                     ),
@@ -148,7 +148,7 @@ class book_intro_sliverappbar {
     );
   }
 
-  List<Widget> pandlist(BookDetail bookdetail) {
+  List<Widget> pandlist(BookDetailModel bookdetail) {
     List<Widget> list = List();
     for (int i = 0; i < bookdetail.theme_ids.length; i++) {
       Padding padding = Padding(

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttercartoon/book_detail_models/book_intro_model.dart';
 import 'package:fluttercartoon/page_request/home_page_request.dart';
+import 'package:fluttercartoon/book_detail_widget/book_catalogue_list.dart';
+import 'package:fluttercartoon/book_detail_widget/book_comment_list.dart';
+import 'package:fluttercartoon/book_detail_widget/book_detail_list.dart';
 import 'dart:ui';
 import 'package:fluttercartoon/PHheader.dart';
 import 'book_intro_sliverappbar.dart';
@@ -16,16 +19,16 @@ import 'book_intro_sliverappbar.dart';
 //    );
 //  }
 
-class BookIntro_Page extends StatefulWidget {
+class BookIntroPage extends StatefulWidget {
   int comic_id;
 
-  BookIntro_Page(this.comic_id);
+  BookIntroPage(this.comic_id);
 
   @override
-  _BookIntro_PageState createState() => _BookIntro_PageState();
+  _BookIntroPageState createState() => _BookIntroPageState();
 }
 
-class _BookIntro_PageState extends State<BookIntro_Page>
+class _BookIntroPageState extends State<BookIntroPage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
   BookDetailIntro _bookIntro;
@@ -39,7 +42,7 @@ class _BookIntro_PageState extends State<BookIntro_Page>
         print(res.data);
         _bookIntro = BookDetailIntro.fromJson(res.data);
         
-        // print("${_bookIntro.comic.cover}");
+         print("${_bookIntro.comic.cover}");
       });
     });
   }
@@ -51,19 +54,19 @@ class _BookIntro_PageState extends State<BookIntro_Page>
       body: NestedScrollView(
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return [
-                 book_intro_sliverappbar().appbar(context, _tabController,_bookIntro == null ? null :_bookIntro.comic)
+                 BookIntroSliverappbar().appbar(context, _tabController,_bookIntro == null ? null :_bookIntro.comic),
             
-               
+                SliverToBoxAdapter(
+                  child:  Divider(height: 0.5,color:Colors.black26,),
+                )
             ];
           },
           body: TabBarView(controller: _tabController, children: [
-            Container(height:300,color:Colors.red,child: MediaQuery.removePadding(context: context,removeTop: true, child: _buildListView('aaa')),),
-            Container(height:300,color:Colors.red),
-            Container(height:300,color:Colors.red),
-          
-            // _buildListView("aaa:"),
-            // _buildListView("bbb:"),
-            // _buildListView("ccc:"),
+            // Container(height:300,color:Colors.red,child: MediaQuery.removePadding(context: context,removeTop: true, child: _buildListView('aaa')),),
+            BookDetailList(_bookIntro),
+            BookCatalogueList(),
+            BookCommentList()
+            
           ])),
     );
   }

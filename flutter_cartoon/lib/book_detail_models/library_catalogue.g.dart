@@ -6,10 +6,11 @@ part of 'library_catalogue.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Library_Catalogue _$Library_CatalogueFromJson(Map<String, dynamic> json) {
-  return Library_Catalogue(
+LibraryCatalogueModel _$LibraryCatalogueModelFromJson(
+    Map<String, dynamic> json) {
+  return LibraryCatalogueModel(
     json['pass_time'] as int,
-    json['type'] as int,
+    // json['type'] as int,
     json['name'] as String,
     json['chapter_id'] as String,
     json['crop_zip_size'] as String,
@@ -23,12 +24,13 @@ Library_Catalogue _$Library_CatalogueFromJson(Map<String, dynamic> json) {
   );
 }
 
-Map<String, dynamic> _$Library_CatalogueToJson(Library_Catalogue instance) =>
+Map<String, dynamic> _$LibraryCatalogueModelToJson(
+        LibraryCatalogueModel instance) =>
     <String, dynamic>{
       'name': instance.name,
       'image_total': instance.image_total,
       'chapter_id': instance.chapter_id,
-      'type': instance.type,
+      // 'type': instance.type,
       'price': instance.price,
       'size': instance.size,
       'pass_time': instance.pass_time,

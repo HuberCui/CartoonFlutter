@@ -58,6 +58,27 @@ class HomeRequest{
 
       return await next();
     }
+    /**评论接口*/
+    static request_CommentList(int comic_id) async{
+       next() async{
+        String url  = Api_Address.CommentList();
+        var res = await httpManager.netFetch(url, {'comicid':comic_id},null, RequestMethod.get_method);
+        return res;
+      }
+
+      return await next();
+    }
+
+    /**猜你喜欢*/
+    static request_GuessLikeList() async{
+       next() async{
+        String url  = Api_Address.GuessLikeList();
+        var res = await httpManager.netFetch(url, null,null, RequestMethod.get_method);
+        return res;
+      }
+
+      return await next();
+    }
 
 
 

@@ -8,9 +8,9 @@ part 'book_intro_model.g.dart';
 @JsonSerializable()
 class BookDetailIntro{
   @JsonKey(name:'chapter_list')
-  List<Library_Catalogue> chapterlist;//目录
-  List<OtherWork> otherWorks;
-  BookDetail comic;
+  List<LibraryCatalogueModel> chapterlist;//目录
+  List<OtherWorkModel> otherWorks;
+  BookDetailModel comic;
 
   BookDetailIntro(this.comic,this.otherWorks,this.chapterlist);
    factory BookDetailIntro.fromJson(Map<String, dynamic> json) => _$BookDetailIntroFromJson(json);
