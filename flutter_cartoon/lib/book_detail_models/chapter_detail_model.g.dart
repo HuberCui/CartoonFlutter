@@ -11,8 +11,7 @@ ChapterDetailModel _$ChapterDetailModelFromJson(Map<String, dynamic> json) {
     status: json['status'] as int,
     chapterId: json['chapter_id'] as String,
     type: json['type'] as String,
-    chapterdetailImageListModel: (json['image_list']
-            as List)
+    chapterdetailImageListModel: (json['image_list'] as List)
         ?.map((e) => e == null
             ? null
             : ChapterdetailImageListModel.fromJson(e as Map<String, dynamic>))
