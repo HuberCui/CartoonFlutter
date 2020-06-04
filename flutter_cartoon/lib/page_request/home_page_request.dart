@@ -85,6 +85,16 @@ class HomeRequest{
 
       return await next();
     }
+    /**目录对应的详情*/
+    static request_ChapterDetail(String chapter_id)async{
+       next() async{
+        String url  = Api_Address.ChapterDetail();
+        var res = await httpManager.netFetch(url, {'chapter_id':chapter_id},null, RequestMethod.get_method);
+        return res;
+      }
+
+      return await next();
+    }
 
 
 

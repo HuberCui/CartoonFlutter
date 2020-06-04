@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fluttercartoon/book_detail_models/book_intro_model.dart';
 import 'package:fluttercartoon/book_detail_models/library_catalogue.dart';
+import 'package:fluttercartoon/pages/chapterdetail_page.dart';
 
 class BookCatalogueList extends StatelessWidget {
   BookDetailIntro bookDetailIntro;
 
   BookCatalogueList(this.bookDetailIntro);
 
+ //获取时间
  String getTime(){
     int datemill = bookDetailIntro.chapterlist.last.pass_time;
   
@@ -73,6 +75,9 @@ class BookCatalogueList extends StatelessWidget {
                       ),
                       onTap: (){
                            print(model.name);
+                           Navigator.of(context).push(MaterialPageRoute(builder: (_){
+                             return ChapterDetailPage(bookDetailIntro,position);
+                           }));
                       },
                     );
                   },

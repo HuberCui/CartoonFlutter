@@ -12,7 +12,7 @@ BookCommentModel _$BookCommentModelFromJson(Map<String, dynamic> json) {
     content: json['content'] as String,
     face: json['face'] as String,
     createTimeStr: json['create_time_str'] as String,
-    nickname:json['nickname'] as String,
+    nickname: json['nickname'] as String,
   );
 }
 
@@ -21,6 +21,6 @@ Map<String, dynamic> _$BookCommentModelToJson(BookCommentModel instance) =>
       'comment_id': instance.commentId,
       'content': instance.content,
       'face': instance.face,
+      'nickname': instance.nickname,
       'create_time_str': instance.createTimeStr,
-      'nickname':instance.nickname,
     };
