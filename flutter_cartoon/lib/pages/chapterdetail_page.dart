@@ -105,13 +105,3 @@ class _ChapterDetailPageState extends State<ChapterDetailPage> {
   }
 }
 
-// ListView.builder(
-//           itemBuilder: (BuildContext context, int index) {
-//             ChapterdetailImageListModel model = _imageList[index];
-//             return Image.network(model.img50,
-//                 width: Device.device_width(context),
-//                 height:
-//                     Device.device_width(context) * model.height / model.width);
-//           },
-//           itemCount: _imageList.length,
-//         ),

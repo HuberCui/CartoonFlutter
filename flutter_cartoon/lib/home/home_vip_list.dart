@@ -3,6 +3,7 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:fluttercartoon/page_request/home_page_request.dart';
 import 'home_vip_section.dart';
 import 'package:fluttercartoon/home_models/vip_comics.dart';
+import 'package:fluttercartoon/pages/book_intro_page.dart';
 enum VIP_SubScripe{
   VIP_LIST,
   SubScripe_LIST

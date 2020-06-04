@@ -49,36 +49,36 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverToBoxAdapter(
-            child: Container(color: Colors.red,height: 80,),
-          ),
-          SliverAppBar(
-            actions: <Widget>[
-//              _buildAction(),
-            ],
-            title: Text('DDDD'),
-            //  backgroundColor: Theme.of(context).accentColor,
-            expandedHeight: 50.0,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                  'assets/images/mine/mine_bg_for_girl@2x.png',
-                  fit: BoxFit.cover),
-            ),
-//            floating: true,
-//             snap: false,
-             pinned: true,
-          ),
-//          SliverPersistentHeader(
-//             pinned: false,//标题栏是否固定
-//            delegate: SliverCustomHeaderDelegate(
-//              title: '',
-//              collapsedHeight: 40,
-//              expandedHeight: 300,
-//              paddingTop: MediaQuery.of(context).padding.top,
-//                fileImageUrl: 'assets/images/mine/mine_bg_for_girl@2x.png'
-//            ),
-//
-//          ),
+          // SliverToBoxAdapter(
+          //   child: Container(color: Colors.red,height: 80,),
+          // ),
+//           SliverAppBar(
+// //             actions: <Widget>[
+// // //              _buildAction(),
+// //             ],
+//             // title: Text('DDDD'),
+//             //  backgroundColor: Theme.of(context).accentColor,
+//             expandedHeight: 50.0,
+//             flexibleSpace: FlexibleSpaceBar(
+//               background: Image.asset(
+//                   'assets/images/mine/mine_bg_for_girl@2x.png',
+//                   fit: BoxFit.cover),
+//             ),
+// //            floating: true,
+// //             snap: false,
+//              pinned: true,
+//           ),
+         SliverPersistentHeader(
+            pinned: false,//标题栏是否固定
+           delegate: SliverCustomHeaderDelegate(
+             title: '',
+             collapsedHeight: 40,
+             expandedHeight: 300,
+             paddingTop: MediaQuery.of(context).padding.top,
+               fileImageUrl: 'assets/images/mine/mine_bg_for_girl@2x.png'
+           ),
+
+         ),
           SliverList(
             // itemExtent: 50.0,
             delegate: SliverChildBuilderDelegate((context, index) {

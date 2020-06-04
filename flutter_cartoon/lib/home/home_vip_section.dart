@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_vip_item.dart';
 import 'package:fluttercartoon/home_models/vip_comics.dart';
-
+import 'package:fluttercartoon/pages/book_intro_page.dart';
 //class Home_VIP_Section extends StatefulWidget {
 //  @override
 //  _Home_VIP_SectionState createState() => _Home_VIP_SectionState();
@@ -51,7 +51,11 @@ class Home_VIP_Section extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               //使这个GridView不随着外边的listview滚动滚动
               itemBuilder: (context, index) {
-                return Home_VIP_Item(vip_comic.comics[index]);
+                return Home_VIP_Item(vip_comic.comics[index],(){
+                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
+                  return BookIntroPage(vip_comic.comics[index].comicId);
+                })).then((value) => print(value));
+                });
               }),
           Container(
             height: 20,
