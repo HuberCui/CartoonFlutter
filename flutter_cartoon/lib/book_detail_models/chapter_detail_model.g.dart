@@ -10,7 +10,6 @@ ChapterDetailModel _$ChapterDetailModelFromJson(Map<String, dynamic> json) {
   return ChapterDetailModel(
     status: json['status'] as int,
     chapterId: json['chapter_id'] as String,
-    type: json['type'] as String,
     chapterdetailImageListModel: (json['image_list'] as List)
         ?.map((e) => e == null
             ? null
@@ -23,6 +22,5 @@ Map<String, dynamic> _$ChapterDetailModelToJson(ChapterDetailModel instance) =>
     <String, dynamic>{
       'status': instance.status,
       'chapter_id': instance.chapterId,
-      'type': instance.type,
       'image_list': instance.chapterdetailImageListModel,
     };

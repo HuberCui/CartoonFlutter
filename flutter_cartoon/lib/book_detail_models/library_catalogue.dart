@@ -15,7 +15,7 @@ class LibraryCatalogueModel{
   // String type;
   String price;
   String size;
-  int pass_time;//时间戳
+  var pass_time;//时间戳
   // String release_time;
   String zip_high_webp;
   String crop_zip_size;

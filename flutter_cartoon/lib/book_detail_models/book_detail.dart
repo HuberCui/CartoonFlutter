@@ -39,7 +39,7 @@ class BookDetailModel {
   String short_description;
   int accredit;
   String cover;
-  int is_vip;
+  var is_vip;
   String type;
   String ori;
   List theme_ids;

@@ -9,7 +9,7 @@ part of 'library_catalogue.dart';
 LibraryCatalogueModel _$LibraryCatalogueModelFromJson(
     Map<String, dynamic> json) {
   return LibraryCatalogueModel(
-    json['pass_time'] as int,
+    json['pass_time'],
     json['name'] as String,
     json['chapter_id'] as String,
     json['crop_zip_size'] as String,

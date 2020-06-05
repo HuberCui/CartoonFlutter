@@ -13,7 +13,7 @@ BookDetailModel _$BookDetailModelFromJson(Map<String, dynamic> json) {
     json['description'] as String,
     json['cover'] as String,
     json['short_description'] as String,
-    json['is_vip'] as int,
+    json['is_vip'],
     json['accredit'] as int,
     json['author'] as Map<String, dynamic>,
     json['cate_id'] as String,

@@ -1,10 +1,12 @@
 {
-  "sortId": 46,
-  "sortName": "古风",
-  "isLike": true,
-  "cover": "https://image.mylife.u17t.com/2015/03/25/1427249584_5e4D65zDbw6d.jpg",
-  "canEdit": false,
-  "argName": "special",
-  "argValue": 46,
-  "argCon": 0
+  "cover" :"https://cover.u17i.com/2019/04/4276398_1555039348_G8ErrccS2fCS.sbig.jpg",
+  "comicId" :71064,
+  "description" :"偷学绝顶武功的唐三跳崖明志，转世后却依然是令人艳羡的正太一枚 ！他带着天生双武魂先天满魄力的天赋走进了诺丁学院，遇到了野蛮可爱的萝莉小舞，血雨腥风加儿女情长。《斗罗大陆》漫画唯一杂志和单行本连载、出版方为《风炫漫画》。好看的漫画必须收入书架哦！",
+  "short_description" : "武魂觉醒修炼升级吧",
+  "is_vip" : 2,
+  "name" :"斗罗大陆",
+  "flag" : 2,
+  "tags" :["a","b"],
+  "author" :"上海风炫动画"
+ 
 }

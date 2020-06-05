@@ -41,7 +41,7 @@ class _GroupPageState extends State<GroupPage> {
               return GestureDetector(
                 onTap: (){
                   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context){
-                  return SortPage();
+                  return SortPage(model);
                 })).then((value) => print(value));
                 },
                               child: Container(
