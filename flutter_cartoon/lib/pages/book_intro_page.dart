@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttercartoon/book_detail_models/book_detail.dart';
 import 'package:fluttercartoon/book_detail_models/book_intro_model.dart';
 import 'package:fluttercartoon/page_request/home_page_request.dart';
 import 'package:fluttercartoon/book_detail_widget/book_catalogue_list.dart';
@@ -6,7 +7,11 @@ import 'package:fluttercartoon/book_detail_widget/book_comment_list.dart';
 import 'package:fluttercartoon/book_detail_widget/book_detail_list.dart';
 import 'dart:ui';
 import 'package:fluttercartoon/PHheader.dart';
+import 'package:provider/provider.dart';
 import 'book_intro_sliverappbar.dart';
+import 'package:fluttercartoon/providers/bookdetail_pro.dart';
+import 'package:fluttercartoon/provider_widget.dart';
+
 //
 //  Widget _buildTabBarBg() {
 //    return Container(
@@ -31,43 +36,48 @@ class BookIntroPage extends StatefulWidget {
 class _BookIntroPageState extends State<BookIntroPage>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
-  BookDetailIntro _bookIntro;
+  // BookDetailIntro _bookIntro;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _tabController = TabController(vsync: this, length: 3);
-    HomeRequest.request_CommicDetail(widget.comic_id).then((res) {
-      setState(() {
-        print(res.data);
-        _bookIntro = BookDetailIntro.fromJson(res.data);
-        
-         print("${_bookIntro.comic.cover}");
-      });
-    });
+   
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(242, 242, 242, 1),
-      body: NestedScrollView(
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return [
-                 BookIntroSliverappbar().appbar(context, _tabController,_bookIntro == null ? null :_bookIntro.comic),
-            
-                SliverToBoxAdapter(
-                  child:  Divider(height: 0.5,color:Colors.black26,),
-                )
-            ];
-          },
-          body: TabBarView(controller: _tabController, children: [
-            // Container(height:300,color:Colors.red,child: MediaQuery.removePadding(context: context,removeTop: true, child: _buildListView('aaa')),),
-           _bookIntro == null? Container(): BookDetailList(_bookIntro),
-           _bookIntro == null? Container(): BookCatalogueList(_bookIntro),
-           _bookIntro == null? Container(): BookCommentList(_bookIntro.comic.comic_id,_bookIntro.comic.thread_id)
-            
-          ])),
+      body: ProviderWidget<BookDetailPro>(
+
+            model: BookDetailPro(Provider.of<HomeRequest>(context)),
+            onReady: (model)=>model.getBookDetail(widget.comic_id),
+            builder: (context,model,_){
+              if(model.loading){
+                return Container();
+              }else{
+                return NestedScrollView(
+            headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+              return [
+                   BookIntroSliverappbar().appbar(context, _tabController,model.bookDetailModel.comic),
+              
+                  SliverToBoxAdapter(
+                    child:  Divider(height: 0.5,color:Colors.black26,),
+                  )
+              ];
+            },
+            body: TabBarView(controller: _tabController, children: [
+              
+                  BookDetailList(model.bookDetailModel),
+                  BookCatalogueList(model.bookDetailModel),
+                  BookCommentList(model.bookDetailModel.comic.comic_id,model.bookDetailModel.comic.thread_id)
+              
+            ]));
+              }
+            },
+          
+      ),
     );
   }
 
