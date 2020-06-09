@@ -1,12 +1,16 @@
 import 'package:fluttercartoon/PHheader.dart';
-
+import 'package:fluttercartoon/cate_models/CateListModel.dart';
 class GroupRequest{
   /**分类列表*/
-  static request_CateList() async{
+  Future<List<CateListModel>> request_CateList() async{
     next() async{
       String url  = Api_Address.CateList();
       var res = await httpManager.netFetch(url, null, null, RequestMethod.get_method);
-      return res;
+      List<CateListModel> list = [];
+       for (var item in res.data['rankingList']) {
+          list.add(CateListModel.fromJson(item));
+        }
+      return list;
     }
 
     return await next();
