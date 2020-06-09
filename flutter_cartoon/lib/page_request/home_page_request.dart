@@ -1,15 +1,16 @@
 
 import 'package:fluttercartoon/PHheader.dart';
-
+import 'package:fluttercartoon/home_models/book_intro.dart';
 class HomeRequest{
   //推荐列表
-   static request_BoutiqueList() async{
+   Future<BookIntro> request_BoutiqueList() async{
        next() async{
          String url  = Api_Address.getBoutiqueList();
          var res = await httpManager.netFetch(url, null, null, RequestMethod.get_method);
-
+         
          print(res.data);
-         return res;
+
+         return BookIntro.fromJson(res.data);
        }
 
        return await next();

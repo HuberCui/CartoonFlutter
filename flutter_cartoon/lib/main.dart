@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttercartoon/PHheader.dart';
 import './pages/base_page.dart';
+import 'package:provider/provider.dart';
+
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(providers: providers,child: MyApp(),));
 }
 
 class MyApp extends StatelessWidget {

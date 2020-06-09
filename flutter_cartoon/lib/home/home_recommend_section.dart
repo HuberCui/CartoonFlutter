@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttercartoon/book_detail_models/book_intro_model.dart';
 import 'package:fluttercartoon/home/home_recommend_item.dart';
-import 'package:fluttercartoon/home_models//comics.dart';
-import 'package:fluttercartoon/home_models//commic_detail.dart';
+import 'package:fluttercartoon/home_models/comics.dart';
+import 'package:fluttercartoon/home_models/commic_detail.dart';
 import 'package:fluttercartoon/pages/book_intro_page.dart';
 //class HomeSections extends StatefulWidget {
 //
