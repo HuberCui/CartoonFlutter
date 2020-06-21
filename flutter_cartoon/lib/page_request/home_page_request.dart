@@ -2,7 +2,8 @@
 import 'package:fluttercartoon/PHheader.dart';
 import 'package:fluttercartoon/home_models/book_intro.dart';
 import 'package:fluttercartoon/book_detail_models/book_intro_model.dart';
-
+import 'package:fluttercartoon/book_detail_models/book_comment_model.dart';
+import 'package:fluttercartoon/book_detail_models/chapter_detail_model.dart';
 class HomeRequest{
   //推荐列表
    Future<BookIntro> request_BoutiqueList() async{
@@ -68,11 +69,15 @@ class HomeRequest{
   //   "msg": "非法访问",
   //   "data": null
   //  }
-    static request_CommentList(String comic_id,String thread_id) async{
+    Future<List<BookCommentModel>> request_CommentList(String comic_id,String thread_id) async{
        next() async{
         String url  = Api_Address.CommentList();
         var res = await httpManager.netFetch(url, {'object_id':int.parse(comic_id),'thread_id':int.parse(thread_id)},null, RequestMethod.get_method);
-        return res;
+        List<BookCommentModel> list = [];
+        for (var item in res.data['commentList']) {
+          list.add(BookCommentModel.fromJson(item));
+        }
+        return list;
       }
 
       return await next();
@@ -89,11 +94,11 @@ class HomeRequest{
       return await next();
     }
     /**目录对应的详情*/
-    static request_ChapterDetail(String chapter_id)async{
+    Future<ChapterDetailModel> request_ChapterDetail(String chapter_id)async{
        next() async{
         String url  = Api_Address.ChapterDetail();
         var res = await httpManager.netFetch(url, {'chapter_id':chapter_id},null, RequestMethod.get_method);
-        return res;
+        return ChapterDetailModel.fromJson(res.data);
       }
 
       return await next();

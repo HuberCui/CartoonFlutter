@@ -24,9 +24,7 @@ class _ProviderWidgetState<T extends ChangeNotifier>
   void initState() {
     if (widget.onReady != null) {
       widget.onReady(widget.model);
-    }
-
-    
+    } 
     super.initState();
   }
 
