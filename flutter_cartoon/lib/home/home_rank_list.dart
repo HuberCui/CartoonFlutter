@@ -49,7 +49,7 @@ class _Home_Rank_ListState extends State<Home_Rank_List> {
         separatorBuilder: (context, index) {
           return Container(
             height: 20,
-            color: Colors.greenAccent,
+            color: Colors.white,
           );
         },
         itemCount: ranklist.length,
