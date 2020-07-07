@@ -8,8 +8,19 @@ class MinePage extends StatefulWidget {
 }
 
 class _MinePageState extends State<MinePage> {
+
+
   @override
   Widget build(BuildContext context) {
+    //超出边界处理
+    ErrorWidget.builder = (FlutterErrorDetails errorDetails){
+      return Center(
+        child: Text(
+          "Error appeared.",
+          style: Theme.of(context).textTheme.title.copyWith(color: Colors.red),
+        ),
+      );
+    };
     return Scaffold(
       body: MainPage(),
     );

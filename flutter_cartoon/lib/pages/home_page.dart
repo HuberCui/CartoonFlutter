@@ -3,7 +3,7 @@ import 'package:fluttercartoon/PHheader.dart';
 import 'package:fluttercartoon/home/home_recommend_list.dart';
 import 'package:fluttercartoon/home/home_vip_list.dart';
 import 'package:fluttercartoon/home/home_rank_list.dart';
-
+import 'search_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -56,9 +56,16 @@ class _HomePageState extends State<HomePage>
                 Icons.search,
                 color: Colors.white,
               ),
-              onPressed: null)
+              onPressed: (){
+                showSearch(context: context, delegate: SearchPage());
+//                Navigator.of(context).push(MaterialPageRoute(builder: (_){
+//
+//                  return ;
+//                }));
+              })
         ],
       ),
+
       body: TabBarView(
         children: [
           Home_Recommend_List(),
