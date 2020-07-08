@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttercartoon/main.dart';
 import 'package:fluttercartoon/widget/SliverCustomHeader.dart';
-
+import 'Test.dart';
 class MinePage extends StatefulWidget {
   @override
   _MinePageState createState() => _MinePageState();
@@ -115,6 +116,10 @@ class _MainPageState extends State<MainPage> {
                   index == list1.length - 1 ? false : true),
               onTap: () {
                 print(list1[index]["title"]);
+
+                Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                 return SwipeToDissmissDemo();
+                }));
               },
             );
           }, childCount: list1.length)),
@@ -156,6 +161,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+
 
 class MineRow extends StatelessWidget {
   String imagefile;

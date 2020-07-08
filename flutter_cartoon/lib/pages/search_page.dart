@@ -43,32 +43,12 @@ class SearchPage extends SearchDelegate<String> {
   // 输入时的推荐及搜索结果
   @override
   Widget buildSuggestions(BuildContext context) {
-return initView();
-    print('============');
-    final suggestionList = query.isEmpty ? recentList : searchList.where((
-        input) => input.startsWith(query)).toList();
-    return ListView.builder(
-      itemCount: suggestionList.length,
-      itemBuilder: (context, index) {
-        // 创建一个富文本，匹配的内容特别显示
-        return ListTile(title: RichText(text: TextSpan(
-          text: suggestionList[index].substring(0, query.length),
-          style: TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold),
-          children: [
-            TextSpan(
-                text: suggestionList[index].substring(query.length),
-                style: TextStyle(color: Colors.grey)
-            )
-          ],)),
-          onTap: (){
-            query = suggestionList[index];
-            Scaffold.of(context).showSnackBar(SnackBar(content: Text(query)));
-          },
-        );
-      },
-    );
+
+     return initView(key: UniqueKey(),);
+
   }
+
+
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -86,33 +66,55 @@ return initView();
 }
 
 class initView extends StatefulWidget {
+  initView({Key key}):super(key:key);
   @override
   _initViewState createState() => _initViewState();
 }
 
 class _initViewState extends State<initView> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print('--------------------${this.context}');
+  }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: <Widget>[
+    print('===========');
+    return SingleChildScrollView(
+      child: Container(child: Column(
+          children: <Widget>[
           headerItem('历史搜索',icon: Icon(Icons.delete),function: (){
 
-          }),
-          ListView.builder(itemBuilder: (context,index){
-            Text('$index');
-          },itemCount: 4,),
-          headerItem('热门搜索',icon: Icon(Icons.refresh),function: (){
+      }),
+            ListView.builder(itemBuilder: (context,index){
+              return ListTile(title: RichText(text: TextSpan(
+                text: '$index',
+                style: TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold),
+                children: [
+                  TextSpan(
+                      text: "$index",
+                      style: TextStyle(color: Colors.grey)
+                  )
+                ],)),
+                onTap: (){
 
-          }),
-          Wrap(children: <Widget>[
-            for (String item in tags) TagItem(item)
-          ]),
-        ],
+                  Scaffold.of(context).showSnackBar(SnackBar(content: Text('$index')));
+                },
+              );
+            },itemCount: 4,shrinkWrap: true,),
+            headerItem('热门搜索',icon: Icon(Icons.refresh),function: (){
+
+            }),
+            Wrap(children: <Widget>[
+              for (String item in tags) TagItem(item)
+            ]),
+          ])
       ),
     );
   }
-
 
   Widget headerItem(String title,{Icon icon,Function function}){
     return Container(
@@ -127,6 +129,7 @@ class _initViewState extends State<initView> {
       ),
     );
   }
+
 }
 
 class TagItem extends StatelessWidget {
