@@ -55,7 +55,13 @@ class _BookIntroPageState extends State<BookIntroPage>
             onReady: (model)=>model.getBookDetail(widget.comic_id),
             builder: (context,model,_){
               if(model.loading){
-                return Container();
+                return NestedScrollView(
+                    headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                      return [
+                        SliverAppBar()
+                      ];
+                    },
+                    body: Center());
               }else{
                 return NestedScrollView(
             headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {

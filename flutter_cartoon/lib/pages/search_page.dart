@@ -83,9 +83,6 @@ return initView();
     );
   }
 
-
-
-
 }
 
 class initView extends StatefulWidget {
