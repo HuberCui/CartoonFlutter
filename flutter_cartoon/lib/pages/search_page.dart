@@ -192,7 +192,7 @@ class _initViewState extends State<initView> {
     return SingleChildScrollView(
       child: Container(
           child: Column(children: <Widget>[
-        headerItem('历史搜索', icon: Icon(Icons.delete), function: () {
+        headerItem('历史搜索', icon: Icon(Icons.delete,color: Colors.black26,), function: () {
           SharedPreferences.getInstance().then((SharedPreferences prefs) {
             prefs.remove('searchList').then((_) {
               setState(() {});
@@ -220,7 +220,7 @@ class _initViewState extends State<initView> {
           itemCount: historyList.length,
           shrinkWrap: true,
         ),
-        headerItem('热门搜索', icon: Icon(Icons.refresh), function: () {}),
+        headerItem('热门搜索', icon: Icon(Icons.refresh,color: Colors.black26), function: () {}),
         Wrap(children: <Widget>[for (Map map in hotList) TagItem(map)]),
       ])),
     );
