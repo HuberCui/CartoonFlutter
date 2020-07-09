@@ -101,13 +101,13 @@ class SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      IconButton(
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color: this.makeStickyHeaderTextColor(shrinkOffset, true),
-                        ),
-                        onPressed: () => Navigator.pop(context),
-                      ),
+//                      IconButton(
+//                        icon: Icon(
+//                          Icons.arrow_back_ios,
+//                          color: this.makeStickyHeaderTextColor(shrinkOffset, true),
+//                        ),
+//                        onPressed: () => Navigator.pop(context),
+//                      ),
                       Text(
                         this.title,
                         style: TextStyle(
@@ -116,13 +116,13 @@ class SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
                           color: this.makeStickyHeaderTextColor(shrinkOffset, false),
                         ),
                       ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.share,
-                          color: this.makeStickyHeaderTextColor(shrinkOffset, true),
-                        ),
-                        onPressed: () {},
-                      ),
+//                      IconButton(
+//                        icon: Icon(
+//                          Icons.share,
+//                          color: this.makeStickyHeaderTextColor(shrinkOffset, true),
+//                        ),
+//                        onPressed: () {},
+//                      ),
                     ],
                   ),
                 ),

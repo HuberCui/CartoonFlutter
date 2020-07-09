@@ -1,7 +1,12 @@
+import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttercartoon/page_request/home_page_request.dart';
+import 'package:fluttercartoon/tools/extension_color.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:fluttercartoon/pages/book_intro_page.dart';
 
 class SearchPage extends SearchDelegate<String> {
-
   @override
   // TODO: implement searchFieldLabel
   String get searchFieldLabel => "请输入漫画名称/作者";
@@ -12,9 +17,16 @@ class SearchPage extends SearchDelegate<String> {
   @override
   List<Widget> buildActions(BuildContext context) {
     // TODO: implement buildActions
-    return [FlatButton(onPressed: (){
-         query = "";
-    }, child: Text('取消'))];
+    return [
+      FlatButton(
+          onPressed: () {
+            query = "";
+          },
+          child: Text(
+            '取消',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ))
+    ];
   }
 
   // 搜索栏左侧的图标和功能，点击时关闭整个搜索页面
@@ -22,8 +34,9 @@ class SearchPage extends SearchDelegate<String> {
   Widget buildLeading(BuildContext context) {
     // TODO: implement buildLeading
     return IconButton(
-      icon: AnimatedIcon(icon: AnimatedIcons.menu_arrow, progress: transitionAnimation),
-      onPressed: (){
+      icon: AnimatedIcon(
+          icon: AnimatedIcons.menu_arrow, progress: transitionAnimation),
+      onPressed: () {
         close(context, '');
       },
     );
@@ -43,12 +56,91 @@ class SearchPage extends SearchDelegate<String> {
   // 输入时的推荐及搜索结果
   @override
   Widget buildSuggestions(BuildContext context) {
+    if (query.length > 0) {
+      return FutureBuilder(
+          builder: (BuildContext context, AsyncSnapshot snapShot) {
+            print('state:${snapShot.connectionState}');
+            List list = List();
+            switch (snapShot.connectionState) {
+              case ConnectionState.none:
+                print('还没有开始网络请求');
+                return Text('还没有开始网络请求');
+              case ConnectionState.active:
+                print('active');
+                return Text('ConnectionState.active');
+              case ConnectionState.waiting:
+                print('waiting');
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              case ConnectionState.done:
+                print('done');
+                print('data:${snapShot.data.data}');
+                list.addAll(snapShot.data.data);
+                return ListView.separated(
+                    itemBuilder: (context, int index) {
+                      return GestureDetector(
+                        onTap: () {
+                          print('##########################');
 
-     return initView(key: UniqueKey(),);
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) {
+                            return BookIntroPage(
+                                int.parse(list[index]['comic_id']));
+                          }));
 
+                          SharedPreferences.getInstance()
+                              .then((SharedPreferences prefs) {
+                            List<String> historylist =
+                                (prefs.getStringList('searchList'));
+                            print('list*****${historylist}');
+                            if (historylist == null) {
+                              historylist = List();
+                              historylist.add(query);
+                            } else {
+                              bool equel = false;
+                              for (String item in historylist) {
+                                if (item == query) {
+                                  equel = true;
+                                }
+                              }
+                              if (!equel) {
+                                historylist.add(query);
+                              }
+                            }
+
+                            prefs
+                                .setStringList('searchList', historylist)
+                                .then((_) {});
+                          });
+                        },
+                        child: Container(
+                          height: 40,
+                          child: Padding(
+                              padding: EdgeInsets.only(left: 20),
+                              child: Center(child: Text(list[index]["name"]))),
+                        ),
+                      );
+                    },
+                    separatorBuilder: (context, int index) {
+                      return Divider(
+                        height: 0.5,
+                        color: Colors.black26,
+                        indent: 20,
+                      );
+                    },
+                    itemCount: list.length);
+              default:
+                return Container();
+            }
+
+            return Container();
+          },
+          future: HomeRequest().request_Search(query));
+    } else {
+      return initView();
+    }
   }
-
-
 
   @override
   ThemeData appBarTheme(BuildContext context) {
@@ -62,80 +154,103 @@ class SearchPage extends SearchDelegate<String> {
       primaryTextTheme: theme.textTheme,
     );
   }
-
 }
 
 class initView extends StatefulWidget {
-  initView({Key key}):super(key:key);
+  initView({Key key}) : super(key: key);
   @override
   _initViewState createState() => _initViewState();
 }
 
 class _initViewState extends State<initView> {
+  List hotList = List();
+  List historyList = List();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    print('--------------------${this.context}');
+    SharedPreferences.getInstance().then((SharedPreferences prefs) {
+      List<String> ll = prefs.getStringList('searchList');
+
+      print('historylsit==${ll}');
+      if (ll != null) {
+        historyList.addAll(ll);
+      }
+      return HomeRequest().request_Hot();
+    }).then((res) {
+      print(res.data);
+      hotList.addAll(res.data['hotItems']);
+
+      setState(() {});
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     print('===========');
     return SingleChildScrollView(
-      child: Container(child: Column(
-          children: <Widget>[
-          headerItem('历史搜索',icon: Icon(Icons.delete),function: (){
-
-      }),
-            ListView.builder(itemBuilder: (context,index){
-              return ListTile(title: RichText(text: TextSpan(
-                text: '$index',
-                style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold),
-                children: [
-                  TextSpan(
-                      text: "$index",
-                      style: TextStyle(color: Colors.grey)
-                  )
-                ],)),
-                onTap: (){
-
-                  Scaffold.of(context).showSnackBar(SnackBar(content: Text('$index')));
-                },
-              );
-            },itemCount: 4,shrinkWrap: true,),
-            headerItem('热门搜索',icon: Icon(Icons.refresh),function: (){
-
-            }),
-            Wrap(children: <Widget>[
-              for (String item in tags) TagItem(item)
-            ]),
-          ])
-      ),
+      child: Container(
+          child: Column(children: <Widget>[
+        headerItem('历史搜索', icon: Icon(Icons.delete), function: () {
+          SharedPreferences.getInstance().then((SharedPreferences prefs) {
+            prefs.remove('searchList').then((_) {
+              setState(() {});
+            });
+          });
+        }),
+        ListView.separated(
+          itemBuilder: (context, index) {
+            return ListTile(
+              title: historyList.length > 0
+                  ? Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(historyList[index]))
+                  : Container(),
+              onTap: () {},
+            );
+          },
+          separatorBuilder: (context, int index) {
+            return Divider(
+              height: 0.5,
+              color: Colors.black26,
+              indent: 20,
+            );
+          },
+          itemCount: historyList.length,
+          shrinkWrap: true,
+        ),
+        headerItem('热门搜索', icon: Icon(Icons.refresh), function: () {}),
+        Wrap(children: <Widget>[for (Map map in hotList) TagItem(map)]),
+      ])),
     );
   }
 
-  Widget headerItem(String title,{Icon icon,Function function}){
+  Widget headerItem(String title, {Icon icon, Function function}) {
     return Container(
-      height: 50,
+      height: 40,
       color: Colors.black12,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text(title,style: TextStyle(color: Colors.black26),),
+          Padding(
+            padding: const EdgeInsets.only(left: 8.0),
+            child: Text(
+              title,
+              style: TextStyle(color: Colors.black26),
+            ),
+          ),
           IconButton(icon: icon, onPressed: function)
         ],
       ),
     );
   }
-
 }
 
 class TagItem extends StatelessWidget {
-  final String text;
+  final Map map;
 
-  TagItem(this.text);
+  TagItem(this.map);
 
   @override
   Widget build(BuildContext context) {
@@ -143,50 +258,22 @@ class TagItem extends StatelessWidget {
       height: 40,
       margin: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
       decoration: BoxDecoration(
-          border:  Border.all(color: Colors.blueAccent.withAlpha(60), width: 1.0),
+          border: Border.all(color: Colors.black12, width: 1.0),
           borderRadius: BorderRadius.all(Radius.circular(5))),
-      child: Container(
-        margin: EdgeInsets.all(8),
-        child: Text(text),
+      child: GestureDetector(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+            return BookIntroPage(int.parse(map['comic_id']));
+          }));
+        },
+        child: Container(
+          margin: EdgeInsets.all(8),
+          child: Text(
+            map['name'],
+            style: TextStyle(color: HexColor.fromHex(map['bgColor'])),
+          ),
+        ),
       ),
     );
   }
 }
-const List<String> tags = [
-  "肯德基",
-  "小哥哥你的东西掉了",
-  "小姐姐好漂亮啊",
-  "这个东西是啥",
-  "哈哈哈",
-  "好困啊",
-  "今天好运",
-  "明天好运来",
-  "今年快结束了",
-  "我累啊",
-  "你写的什么代码",
-  "多多多"
-];
-const searchList = [
-  "a搜索结果数据1-aa",
-  "b搜索结果数据2-bb",
-  "c搜索结果数据3-cc",
-  "c搜索结果数据4-dd",
-  "e搜索结果数据5-ee",
-  "f搜索结果数据6-ff",
-  "f搜索结果数据7-gg",
-  "f搜索结果数据8-hh"
-];
-
-const recentList = [
-  "推荐结果1-ii",
-  "推荐结果2-jj",
-  "推荐结果3-kk",
-  "推荐结果4-ll",
-  "推荐结果5-mm",
-  "推荐结果6-nn",
-  "推荐结果7-oo",
-  "推荐结果8-pp",
-];
-
-
-

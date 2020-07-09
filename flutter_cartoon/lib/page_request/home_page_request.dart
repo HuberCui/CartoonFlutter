@@ -62,6 +62,7 @@ class HomeRequest{
 
       return await next();
     }
+
     /**评论接口*/
 
   //   {
@@ -103,6 +104,27 @@ class HomeRequest{
 
       return await next();
     }
+   /**关键字搜索*/
+   Future request_Search(String name) async{
+     next() async{
+       String url  = Api_Address.SearchRelative();
+       var res = await httpManager.netFetch(url, {'inputText':name},null, RequestMethod.get_method);
+       return res;
+     }
+
+     return await next();
+   }
+
+   /**热门搜索*/
+   Future request_Hot() async{
+     next() async{
+       String url  = Api_Address.SearchHot();
+       var res = await httpManager.netFetch(url, null,null, RequestMethod.get_method);
+       return res;
+     }
+
+     return await next();
+   }
 
 
 
