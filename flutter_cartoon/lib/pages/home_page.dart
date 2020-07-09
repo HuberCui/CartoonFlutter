@@ -75,12 +75,12 @@ class _HomePageState extends State<HomePage>
         ],
         controller: _tabController,
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-         // await HomeRequest.request_BoutiqueList();
-        },
-      ),
+//      floatingActionButton: FloatingActionButton(
+//        child: Icon(Icons.add),
+//        onPressed: () async {
+//         // await HomeRequest.request_BoutiqueList();
+//        },
+//      ),
     );
   }
 }

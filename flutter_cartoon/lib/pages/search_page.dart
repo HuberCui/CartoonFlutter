@@ -115,10 +115,11 @@ class SearchPage extends SearchDelegate<String> {
                           });
                         },
                         child: Container(
+                          alignment: Alignment.centerLeft,
                           height: 40,
                           child: Padding(
                               padding: EdgeInsets.only(left: 20),
-                              child: Center(child: Text(list[index]["name"]))),
+                              child: Text(list[index]["name"])),
                         ),
                       );
                     },
@@ -201,13 +202,15 @@ class _initViewState extends State<initView> {
         }),
         ListView.separated(
           itemBuilder: (context, index) {
-            return ListTile(
-              title: historyList.length > 0
+            return Container(
+              alignment: Alignment.centerLeft,
+              height: 40,
+              child:historyList.length > 0
                   ? Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Text(historyList[index]))
                   : Container(),
-              onTap: () {},
+
             );
           },
           separatorBuilder: (context, int index) {
